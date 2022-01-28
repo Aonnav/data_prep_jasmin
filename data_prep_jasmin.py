@@ -13,7 +13,6 @@ filedir = "/vol/tensusers3/nvhelleman/jasmin/data/"
 original = "/vol/tensusers3/nvhelleman/jasmin/20210326/tier/"
 
 # wav files to use dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20210326/wav_files_to_use/"
-soundfile = "/vol/tensusers3/nvhelleman/jasmin/20210326/wav_files_to_use/"
 test_set = "/vol/tensusers3/nvhelleman/jasmin/20210326/wav_files_to_use_test/"
 train_set = "/vol/tensusers3/nvhelleman/jasmin/20210326/wav_files_to_use_train/"
 
