@@ -6,20 +6,22 @@ import os
 import os.path
 
 ## DIRECTORIES ##
-# data dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/data/"
-filedir = "/vol/tensusers3/nvhelleman/jasmin/data/"
+# output data dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/data/"
+filedir = "/home/ctejedor/python-scripts/data_prep_jasmin/data/"
 
 # tier dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20210326/tier/"
-original = "/vol/tensusers3/nvhelleman/jasmin/20210326/tier/"
+original = "/home/ctejedor/python-scripts/data_prep_jasmin/20210326/tier/"
 
 # wav files to use dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20210326/wav_files_to_use/"
-test_set = "/vol/tensusers3/nvhelleman/jasmin/20210326/wav_files_to_use_test/"
-train_set = "/vol/tensusers3/nvhelleman/jasmin/20210326/wav_files_to_use_train/"
+test_set = "/home/ctejedor/python-scripts/data_prep_jasmin/20210326/wav_files_to_use_test/"
+train_set = "/home/ctejedor/python-scripts/data_prep_jasmin/20210326/wav_files_to_use_train/"
 
 # rec to use file
-rec = "/vol/tensusers3/nvhelleman/jasmin/20210326/rec_to_use.txt"
+rec = "/home/ctejedor/python-scripts/data_prep_jasmin/20210326/rec_to_use.txt"
 
 ## TRAIN / TEST SET ##
+TRAIN_PATH = 'train_jasmin/'
+TEST_PATH = 'test_jasmin/'
 train = []
 test = []
 for name in os.listdir(train_set):
@@ -45,7 +47,7 @@ def text(filenames):
                 transcript = ""
     return '\n'.join(sorted(results))
 
-with open(filedir+'train_jasmin/text', 'w', encoding='utf-8') as train_text, open(filedir+'test_jasmin/text', 'w', encoding='utf-8') as test_text:
+with open(filedir+TRAIN_PATH+'text', 'w', encoding='utf-8') as train_text, open(filedir+TEST_PATH+'text', 'w', encoding='utf-8') as test_text:
     train_text.write(text(train)+ '\n')
     test_text.write(text(test)+ '\n')
 
@@ -63,7 +65,7 @@ def utt2spk(filenames):
             number += 1          
     return '\n'.join(sorted(results))
 
-with open(filedir+'train_jasmin/utt2spk', 'w', encoding='utf-8') as train_text, open(filedir+'test_jasmin/utt2spk', 'w', encoding='utf-8') as test_text:
+with open(filedir+TRAIN_PATH+'utt2spk', 'w', encoding='utf-8') as train_text, open(filedir+TEST_PATH+'utt2spk', 'w', encoding='utf-8') as test_text:
     train_text.write(utt2spk(train))
     test_text.write(utt2spk(test))
 
@@ -75,17 +77,17 @@ def wav_scp(filenames, set):
         results.append("{} {}".format(basename, set + name))
     return "\n".join(sorted(results))
 
-with open(filedir+'train_jasmin/wav.scp', 'w', encoding='utf-8') as train_text, open(filedir+'test_jasmin/wav.scp', 'w', encoding='utf-8') as test_text:
+with open(filedir+TRAIN_PATH+'wav.scp', 'w', encoding='utf-8') as train_text, open(filedir+TEST_PATH+'wav.scp', 'w', encoding='utf-8') as test_text:
     train_text.write(wav_scp(train, train_set)+ '\n')
     test_text.write(wav_scp(test, test_set)+ '\n')
 
 ## SPK2UTT ##
 def spk2utt():
-    os.system('utils/utt2spk_to_spk2utt.pl data/test_jasmin/utt2spk > data/test_jasmin/spk2utt')
-    os.system('utils/utt2spk_to_spk2utt.pl data/train_jasmin/utt2spk > data/train_jasmin/spk2utt')
+    os.system('utils/utt2spk_to_spk2utt.pl '+filedir+TRAIN_PATH+'/utt2spk > '+filedir+TRAIN_PATH+'/spk2utt')
+    os.system('utils/utt2spk_to_spk2utt.pl '+filedir+TEST_PATH+'/utt2spk > '+filedir+TEST_PATH+'/spk2utt')
 
 spk2utt()  
-with open(filedir+'train_jasmin/utt2spk', 'a') as train_text, open(filedir+'test_jasmin/utt2spk', 'a') as test_text:
+with open(filedir+TRAIN_PATH+'utt2spk', 'a') as train_text, open(filedir+TEST_PATH+'utt2spk', 'a') as test_text:
     train_text.write('\n')
     test_text.write('\n')
 
@@ -112,7 +114,7 @@ def segments(filenames):
               start = True     
     return '\n'.join(sorted(results))
 
-with open(filedir+'train_jasmin/segments', 'w', encoding='utf-8') as train_text, open(filedir+'test_jasmin/segments', 'w', encoding='utf-8') as test_text:
+with open(filedir+TRAIN_PATH+'segments', 'w', encoding='utf-8') as train_text, open(filedir+TEST_PATH+'segments', 'w', encoding='utf-8') as test_text:
     train_text.write(segments(train)+ '\n')
     test_text.write(segments(test)+ '\n')
 
@@ -130,6 +132,6 @@ def spk2gender(filenames):
               results.append("{} {}".format(basename, "m"))
     return "\n".join(sorted(results))
 
-with open(filedir+'train_jasmin/spk2gender', 'w', encoding='utf-8') as train_text, open(filedir+'test_jasmin/spk2gender', 'w', encoding='utf-8') as test_text:
+with open(filedir+TRAIN_PATH+'spk2gender', 'w', encoding='utf-8') as train_text, open(filedir+TEST_PATH+'spk2gender', 'w', encoding='utf-8') as test_text:
     train_text.write(spk2gender(train)+ '\n')
     test_text.write(spk2gender(test)+ '\n')
