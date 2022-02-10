@@ -1,3 +1,4 @@
+# These values do not matter on Linux (only on Windows) -- BEGIN
 form Read multiple files
 	sentence source_directory 20220211/awd_files_to_use
 	sentence save_directory 20220211/praat_files_to_use
@@ -5,6 +6,7 @@ form Read multiple files
 	sentence read_file_extension .awd
 	sentence save_file_extension .awd
 endform
+# These values do not matter on Linux (only on Windows) -- END
 
 Create Strings as file list... list 'source_directory$'/*'read_file_extension$'
 Sort

@@ -1,24 +1,28 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import re
-import os 
+import re, sys, os
 import os.path
 
+if (len(sys.argv) < 3):
+    print("You must add two arguments: a folder name for generating the files and the root path to this project folder.")
+    sys.exit(-1)
+
+date = sys.argv[1]
+myfolder = sys.argv[2]
 ## DIRECTORIES all of them ending with / ##
-# TODO-output data dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/data/"
-filedir = "/home/ctejedor/python-scripts/data_prep_jasmin/data/"
-# TODO-tier dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20220210/tier/"
-original_prev = "/home/ctejedor/python-scripts/data_prep_jasmin/20220211/tier"
+# output data dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/data/"
+filedir = myfolder+"/data/"
+# tier dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20220210/tier/"
+original_prev =  os.path.join(myfolder, date, 'tier')
 original = original_prev+'_utf8/'
 os.system('./encoding.sh '+original_prev+ ' '+original)
-# TODO-wav (test) files to use dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20220210/wav_files_to_use/"
-test_set = "/home/ctejedor/python-scripts/data_prep_jasmin/20220211/wav_files_to_use_test/"
-# TODO-wav (train)
-train_set = "/home/ctejedor/python-scripts/data_prep_jasmin/20220211/wav_files_to_use_train/"
-# TODO-rec to use file
-rec = "/home/ctejedor/python-scripts/data_prep_jasmin/20220211/rec_to_use.txt"
-
+# wav (test) files to use dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20220210/wav_files_to_use/"
+test_set = os.path.join(myfolder, date, 'wav_files_to_use_test/')
+# wav (train)
+train_set = os.path.join(myfolder, date, 'wav_files_to_use_train/')
+# rec to use file
+rec = os.path.join(myfolder, date, 'rec_to_use.txt')
 
 
 

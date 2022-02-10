@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-## Please, modify all TODO instances (x3)
+## Please, modify the TODO instance (x1) to establish 
+## the selection criteria (by default Group = 1)
 
 import re
 import os
@@ -9,11 +10,13 @@ import sys
 import shutil
 from pathlib import Path
 
-# Change these two values
-date = '20220211' # TODO-1
-myfolder = os.path.join('/home/ctejedor/python-scripts/data_prep_jasmin', date)  # TODO-2 root folder
+if (len(sys.argv) < 3):
+    print("You must add two arguments: a folder name for generating the files and the root path to this project folder.")
+    sys.exit(-1)
 
-# Default paths (Ponyland)
+
+date = sys.argv[1]
+myfolder = os.path.join(sys.argv[2], date)
 jasmin_folder = '/vol/bigdata/corpora/JASMIN/'
 recordings = '/vol/bigdata/corpora/JASMIN/CDdoc/data/meta/text/nl/recordings.txt'
 selected_recordings = os.path.join(myfolder, 'rec_to_use.txt')
@@ -39,7 +42,7 @@ os.mkdir(tier_folder)
 with open(recordings,'r', encoding='utf-8') as f_in, open(selected_recordings,'w', encoding='utf-8') as f_out:
     for line in f_in:
         w_lst = line.split()
-        if w_lst[3] == '1': # TODO-3 groups or component (see columns in file "$recordings")
+        if w_lst[3] == '1': # TODO groups or component (see columns in file "$recordings")
             f_out.write(line)
 
 # create folders if not exist, remove folders if exist
