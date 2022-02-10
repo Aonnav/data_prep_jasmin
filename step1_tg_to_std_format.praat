@@ -1,8 +1,6 @@
-# Run on Windows and change the paths
-
 form Read multiple files
-	sentence source_directory C:\Users\CRISTIAN\Desktop\awd_files_to_use
-	sentence save_directory C:\Users\CRISTIAN\Desktop\praat_files_to_use
+	sentence source_directory 20220211/awd_files_to_use
+	sentence save_directory 20220211/praat_files_to_use
 	# could be .tg or .awd
 	sentence read_file_extension .awd
 	sentence save_file_extension .awd

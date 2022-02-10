@@ -1,8 +1,6 @@
-# Run on Windows and change the paths
-
 form Read multiple files
-	sentence source_directory C:\Users\CRISTIAN\Desktop\praat_files_to_use
-	sentence save_directory C:\Users\CRISTIAN\Desktop\tier
+	sentence source_directory 20220211/praat_files_to_use
+	sentence save_directory 20220211/tier
 endform
 
 Create Strings as file list... list 'source_directory$'/*
@@ -14,7 +12,7 @@ number_of_files = Get number of strings
 for ifile to number_of_files
 	select Strings list
 	file_name$ = Get string... ifile
-	writeInfoLine: "file name is", file_name$
+	#writeInfoLine: "file name is", file_name$
 
 	Read from file... 'source_directory$'/'file_name$'
 	Extract one tier: 1

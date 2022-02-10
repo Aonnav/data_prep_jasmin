@@ -6,16 +6,17 @@ import os
 import os.path
 
 ## DIRECTORIES all of them ending with / ##
-# output data dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/data/"
+# TODO-output data dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/data/"
 filedir = "/home/ctejedor/python-scripts/data_prep_jasmin/data/"
-# tier dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20220210/tier/"
+# TODO-tier dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20220210/tier/"
 original_prev = "/home/ctejedor/python-scripts/data_prep_jasmin/20220211/tier"
 original = original_prev+'_utf8/'
 os.system('./encoding.sh '+original_prev+ ' '+original)
-# wav files to use dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20220210/wav_files_to_use/"
+# TODO-wav (test) files to use dir, e.g.; "/vol/tensusers3/nvhelleman/jasmin/20220210/wav_files_to_use/"
 test_set = "/home/ctejedor/python-scripts/data_prep_jasmin/20220211/wav_files_to_use_test/"
+# TODO-wav (train)
 train_set = "/home/ctejedor/python-scripts/data_prep_jasmin/20220211/wav_files_to_use_train/"
-# rec to use file
+# TODO-rec to use file
 rec = "/home/ctejedor/python-scripts/data_prep_jasmin/20220211/rec_to_use.txt"
 
 

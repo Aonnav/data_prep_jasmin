@@ -3,6 +3,8 @@
 data/
 utils/
 utils
+_step1.txt
+_step2.txt
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
